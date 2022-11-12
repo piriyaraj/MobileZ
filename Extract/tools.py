@@ -109,18 +109,21 @@ def checkForNewPost():
 
 # check post table wether the post is released or not
 def databasePostReleased():
-    pass
-
-
-def test():
-    print("test")
-    posts = post.objects.filter(released=False)
-    for i in posts[:1]:
+    posts = post.objects.filter(released=False).order_by('updated')
+    for i in posts:
         try:
-            result=isPublished(i.url)
+            result = isPublished(i.url)
         except Exception as e:
             print(e)
             break
         if(result != False):
-            i.released=True
+            i.released = True
             i.save()
+        else:
+            i.save()
+
+
+def test():
+    posts = post.objects.filter(released=False).order_by('updated')[0]
+    posts.save()
+    print(posts.url)
