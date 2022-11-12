@@ -53,10 +53,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'MobileZ.urls'
 
+blogTemp = os.path.abspath("templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [blogTemp],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

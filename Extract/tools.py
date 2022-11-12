@@ -78,7 +78,7 @@ def extractModels():
                 name=mobileBrand, totalpost=int(mobileCount), brandurl=mobileBrandUrl)
     pass
 
-# update post table from brands data
+# update post table from brands data in table
 # its add new post links in post table
 def checkForNewPost():
     brands = brand.objects.filter(havenewpost=True)
@@ -87,7 +87,7 @@ def checkForNewPost():
         extractModels()
         brands = brand.objects.filter(havenewpost=True)
         if(len(brands) == 0):
-            print("NO new Posts")
+            print("NO new Posts in website")
             return 1
     for brandObj in brands[:1]:
         # print(i.find("a").get_attribute_list("href"))

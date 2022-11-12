@@ -19,5 +19,6 @@ from django.urls import path
 from Extract import views
 urlpatterns = [
     path('', views.index,),
-    path("newpostcheck",views.newpostcheck,name='newpostcheck'),
+    path("newpostcheck", views.getNewPostFromWebsit, name='newpostcheck'),
+    path("updatereleasedpost", views.checkReleasedPostInDataBase, name='updatereleasedpost'),
 ]
