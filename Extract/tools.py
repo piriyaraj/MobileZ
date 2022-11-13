@@ -122,7 +122,8 @@ def databasePostReleased():
         else:
             i.save()
 
-
+def updatePostData():
+    pass
 def test():
     posts = post.objects.filter(released=False).order_by('updated')[0]
     posts.save()
