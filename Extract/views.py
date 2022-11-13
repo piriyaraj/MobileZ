@@ -7,12 +7,14 @@ from . import tools
 # Create your views here.
 def index(request):
     tools.test()
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)
+    return render(request,'Extract/index.html')
 
 
-def newpostcheck(request):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)
+def getNewPostFromWebsit(request):
+    tools.checkForNewPost()
+    return render(request, 'Extract/index.html')
+
+
+def checkReleasedPostInDataBase(request):
+    tools.databasePostReleased()
+    return render(request, 'Extract/index.html')

@@ -78,7 +78,7 @@ def extractModels():
                 name=mobileBrand, totalpost=int(mobileCount), brandurl=mobileBrandUrl)
     pass
 
-# update post table from brands data
+# update post table from brands data in table
 # its add new post links in post table
 def checkForNewPost():
     brands = brand.objects.filter(havenewpost=True)
@@ -87,7 +87,7 @@ def checkForNewPost():
         extractModels()
         brands = brand.objects.filter(havenewpost=True)
         if(len(brands) == 0):
-            print("NO new Posts")
+            print("NO new Posts in website")
             return 1
     for brandObj in brands[:1]:
         # print(i.find("a").get_attribute_list("href"))
@@ -109,18 +109,21 @@ def checkForNewPost():
 
 # check post table wether the post is released or not
 def databasePostReleased():
-    pass
+    posts = post.objects.filter(released=False).order_by('updated')
+    for i in posts[:1]:
+        try:
+            result = isPublished(i.url)
+        except Exception as e:
+            print(e)
+            return
+        if(result != False):
+            i.released = True
+            i.save()
+        else:
+            i.save()
 
 
 def test():
-    print("test")
-    posts = post.objects.filter(released=False)
-    for i in posts[:1]:
-        try:
-            result=isPublished(i.url)
-        except Exception as e:
-            print(e)
-            break
-        if(result != False):
-            i.released=True
-            i.save()
+    posts = post.objects.filter(released=False).order_by('updated')[0]
+    posts.save()
+    print(posts.url)

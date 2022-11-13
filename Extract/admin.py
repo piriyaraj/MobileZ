@@ -7,7 +7,7 @@ from Extract.models import brand, post
 
 @admin.register(post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('url', 'released', 'posted')
+    list_display = ('url', 'released', 'posted', 'updated')
     search_fields = ('url', )
 
 
