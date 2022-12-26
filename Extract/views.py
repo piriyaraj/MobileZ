@@ -10,7 +10,7 @@ def index(request):
     return render(request,'Extract/index.html')
 
 
-def getNewPostFromWebsit(request):
+def getNewPostFromWebsite(request):
     tools.checkForNewPost()
     return render(request, 'Extract/index.html')
 
@@ -18,3 +18,5 @@ def getNewPostFromWebsit(request):
 def checkReleasedPostInDataBase(request):
     tools.databasePostReleased()
     return render(request, 'Extract/index.html')
+
+
